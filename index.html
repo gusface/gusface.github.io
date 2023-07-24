@@ -21,12 +21,14 @@
     /* Video styles */
     video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
       z-index: -1;
-      opacity: 0; /* Hide the video initially */
     }
 
     /* Content styles */
@@ -63,31 +65,24 @@
     }
   </style>
   <script>
-    // JavaScript for interactive features and video playback
+    // JavaScript for interactive features
     function showMessage() {
-      alert('Hello! Enter Here');
-    }
-
-    function playVideo() {
-      var video = document.getElementById('background-video');
-      if (video.paused) {
-        video.style.opacity = '1'; // Show the video
-        video.play();
-      }
+      alert('Hello! This is an interactive feature.');
+      
     }
   </script>
 </head>
 <body>
   <div class="container">
-    <!-- Video element with the muted attribute -->
-    <video id="background-video" muted loop>
+    <!-- Video element with the autoplay and muted attributes -->
+    <video autoplay muted loop>
       <source src="background-video.mp4" type="video/mp4">
       <!-- Add more video sources here for different formats -->
     </video>
     <div class="content">
       <h1>Welcome to the Complex Webpage</h1>
       <p>Click the button below to see an interactive feature:</p>
-      <button class="button" onclick="showMessage(); playVideo();">Click Me!</button>
+      <button class="button" onclick="showMessage()">Click Me!</button>
     </div>
   </div>
 </body>
