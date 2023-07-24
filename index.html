@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Complex Webpage with Picture Background</title>
+  <title>Complex Webpage with Background Video</title>
   <style>
     /* Reset some default styles */
     body {
@@ -12,25 +12,35 @@
 
     /* Page container */
     .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
-      background-image: url('background-image.jpg');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
       position: relative;
-      z-index: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Video styles */
+    video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
     }
 
     /* Content styles */
     .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 4px;
-      position: relative;
-      z-index: 1;
+      text-align: center;
     }
 
     /* Heading styles */
@@ -58,14 +68,15 @@
     // JavaScript for interactive features
     function showMessage() {
       alert('Hello! This is an interactive feature.');
-      window.location.href = 'https://gusface.github.io/About.html'; // Open hyperlink to about.html
+      window.location.href = 'about.html'; // Open hyperlink to about.html
     }
   </script>
 </head>
 <body>
   <div class="container">
+    <video src="background-video.mp4" autoplay muted loop></video>
     <div class="content">
-      <h1>Welcome to My Webpage Bitches</h1>
+      <h1>Welcome to the Complex Webpage</h1>
       <p>Click the button below to see an interactive feature:</p>
       <button class="button" onclick="showMessage()">Click Me!</button>
     </div>
