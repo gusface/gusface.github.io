@@ -74,7 +74,11 @@
 </head>
 <body>
   <div class="container">
-    <video src="background-video.mp4" autoplay=1 allow='autoplay' muted loop></video>
+    <!-- Video element with the autoplay and muted attributes -->
+    <video autoplay muted loop>
+      <source src="background-video.mp4" type="video/mp4">
+      <!-- Add more video sources here for different formats -->
+    </video>
     <div class="content">
       <h1>Welcome to the Complex Webpage</h1>
       <p>Click the button below to see an interactive feature:</p>
