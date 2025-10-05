@@ -64,7 +64,8 @@ https://gusface.github.io/repository.gusface-1.0.0.zip
 
 ### Test URLs:
 - Repository XML: https://gusface.github.io/addons.xml
-- Repository ZIP: https://gusface.github.io/repository.gusface-1.0.0.zip
+- Repository ZIP: https://gusface.github.io/repo.zip
+- Main Repository: https://gusface.github.io/repository.gusface-1.0.0.zip
 - Builds folder: https://gusface.github.io/builds/
 
 ## What's Next?
