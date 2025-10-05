@@ -93,10 +93,12 @@
         </div>
         
         <div class="download-info">
-            <h3>Quick Install URL for Kodi:</h3>
-            <div class="url-box">gusface.github.io/repo</div>
-            <p><em>Use this URL in Kodi's "Install from zip file" → "Enter URL" option</em></p>
-            <p><strong>Note:</strong> Kodi will automatically download the ZIP when you use this URL directly in the app.</p>
+            <h3>Quick Install URLs for Kodi:</h3>
+            <div class="url-box">gusface.github.io/repo.zip</div>
+            <p><strong>RECOMMENDED:</strong> Direct ZIP URL that always works in Kodi</p>
+            
+            <div class="url-box" style="margin-top: 15px;">gusface.github.io/repo</div>
+            <p><em>Alternative: This page (auto-detects Kodi and redirects)</em></p>
         </div>
         
         <div class="instructions">
@@ -113,8 +115,22 @@
     </div>
     
     <script>
-        // Optional: Add click tracking or other functionality here
-        console.log('GUS Face Repository page loaded');
+        // Detect if this is Kodi accessing the page
+        function isKodi() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return userAgent.includes('kodi') || 
+                   userAgent.includes('xbmc') ||
+                   userAgent.includes('curl') ||
+                   window.location.search.includes('kodi');
+        }
+        
+        // If Kodi is detected, automatically redirect to ZIP
+        if (isKodi()) {
+            console.log('Kodi detected - redirecting to ZIP file');
+            window.location.href = 'repository.gusface.zip';
+        } else {
+            console.log('Browser detected - showing download page');
+        }
     </script>
 </body>
 </html>

@@ -2,12 +2,17 @@
 
 ## Quick Install URLs
 
-### Method 1: Direct Repository Install
+### Method 1: Direct ZIP for Kodi (RECOMMENDED)
+```
+https://gusface.github.io/repo.zip
+```
+
+### Method 2: Full Repository ZIP
 ```
 https://gusface.github.io/repository.gusface-1.0.0.zip
 ```
 
-### Method 2: Via Repository Page  
+### Method 3: Repository Download Page (Browser)
 ```
 https://gusface.github.io/repo
 ```
@@ -25,8 +30,8 @@ https://gusface.github.io/repo
    - Settings → Add-ons → Install from zip file
    - Choose one of these methods:
      
-     **Method A - Direct URL:**
-     - Enter URL: `https://gusface.github.io/repository.gusface-1.0.0.zip`
+     **Method A - Direct URL (BEST):**
+     - Enter URL: `https://gusface.github.io/repo.zip`
      
      **Method B - Download First:**
      - Visit: `https://gusface.github.io/repo`
