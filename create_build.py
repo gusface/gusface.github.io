@@ -27,9 +27,31 @@ class KodiBuildCreator:
         
         # Set output directories based on build type
         if self.build_type == "personal":
-            # Personal builds go to a private local folder
-            self.builds_dir = Path.home() / "Documents" / "Private_Kodi_Builds"
+            # Try multiple secure locations for personal builds
+            personal_locations = [
+                # OneDrive private folder (synced, accessible from anywhere)
+                Path.home() / "OneDrive" / "Documents" / "Private_Kodi_Builds",
+                # Local Documents (private, local only)
+                Path.home() / "Documents" / "Private_Kodi_Builds",
+                # Backup location
+                self.script_dir.parent / "Private_Kodi_Builds"
+            ]
+            
+            # Use the first available location
+            for location in personal_locations:
+                try:
+                    location.mkdir(parents=True, exist_ok=True)
+                    self.builds_dir = location
+                    break
+                except Exception:
+                    continue
+            else:
+                # Fallback to local documents
+                self.builds_dir = Path.home() / "Documents" / "Private_Kodi_Builds"
+                self.builds_dir.mkdir(parents=True, exist_ok=True)
+            
             self.build_name += "_Personal"
+            print(f"🔒 Personal builds will be saved to: {self.builds_dir}")
         else:
             # Public builds go to the repo builds folder
             self.builds_dir = self.script_dir / "builds"
@@ -52,7 +74,24 @@ class KodiBuildCreator:
             print(f"❌ Kodi userdata not found at: {self.kodi_userdata}")
             print("Please ensure Kodi is installed and has been run at least once.")
             return False
+        
         print(f"✅ Found Kodi userdata at: {self.kodi_userdata}")
+        
+        # Show what's in the Kodi directory
+        print("🔍 Kodi userdata contents:")
+        try:
+            items = list(self.kodi_userdata.iterdir())
+            for item in sorted(items)[:10]:  # Show first 10 items
+                if item.is_file():
+                    size_mb = item.stat().st_size / (1024*1024)
+                    print(f"   📝 {item.name} ({size_mb:.1f}MB)")
+                elif item.is_dir():
+                    print(f"   📁 {item.name}/")
+            if len(items) > 10:
+                print(f"   ... and {len(items)-10} more items")
+        except Exception as e:
+            print(f"   ⚠️  Could not list contents: {e}")
+        
         return True
     
     def clean_sensitive_data(self, temp_dir):
@@ -202,13 +241,17 @@ class KodiBuildCreator:
         """Copy Kodi settings and configuration"""
         print("📋 Copying Kodi settings...")
         
-        # Essential files for build
-        essential_files = [
-            "guisettings.xml",      # UI/Theme settings
+        # Required files for build
+        required_files = [
+            "guisettings.xml",      # UI/Theme settings (usually exists)
+        ]
+        
+        # Optional files for build
+        optional_files = [
             "sources.xml",          # Media sources
             "favourites.xml",       # User favorites
-            "advancedsettings.xml", # Advanced Kodi settings
-            "playercorefactory.xml", # Player settings
+            "advancedsettings.xml", # Advanced Kodi settings (optional)
+            "playercorefactory.xml", # Player settings (optional)
         ]
         
         # Essential directories
@@ -218,24 +261,52 @@ class KodiBuildCreator:
             "Database",            # Kodi databases (will be cleaned)
         ]
         
-        # Copy files
-        for filename in essential_files:
+        # Copy required files
+        missing_required = []
+        for filename in required_files:
             src = self.kodi_userdata / filename
             if src.exists():
                 shutil.copy2(src, temp_dir / filename)
                 print(f"   ✅ Copied: {filename}")
             else:
-                print(f"   ⚠️  Not found: {filename}")
+                missing_required.append(filename)
+                print(f"   ❌ Missing required file: {filename}")
+        
+        # Copy optional files
+        for filename in optional_files:
+            src = self.kodi_userdata / filename
+            if src.exists():
+                shutil.copy2(src, temp_dir / filename)
+                print(f"   ✅ Copied: {filename}")
+            else:
+                print(f"   ℹ️  Optional file not found: {filename} (skipping)")
+        
+        # Check if we have minimum required files
+        if missing_required:
+            print(f"   ⚠️  Warning: Missing required files: {missing_required}")
+            print("   This might indicate Kodi hasn't been fully configured yet.")
         
         # Copy directories
         for dirname in essential_dirs:
             src = self.kodi_userdata / dirname
             dst = temp_dir / dirname
             if src.exists():
-                shutil.copytree(src, dst, ignore_errors=True)
-                print(f"   ✅ Copied directory: {dirname}")
+                try:
+                    shutil.copytree(src, dst)
+                    print(f"   ✅ Copied directory: {dirname}")
+                except Exception as e:
+                    print(f"   ⚠️  Warning copying {dirname}: {e}")
+                    # Try to continue anyway
+                    try:
+                        dst.mkdir(exist_ok=True)
+                        for item in src.iterdir():
+                            if item.is_file():
+                                shutil.copy2(item, dst / item.name)
+                        print(f"   ✅ Copied directory (fallback): {dirname}")
+                    except Exception as e2:
+                        print(f"   ❌ Failed to copy {dirname}: {e2}")
             else:
-                print(f"   ⚠️  Directory not found: {dirname}")
+                print(f"   ℹ️  Directory not found: {dirname} (skipping)")
     
     def copy_kodi_addons(self, temp_dir):
         """Copy addons directly from Kodi installation"""
@@ -254,9 +325,13 @@ class KodiBuildCreator:
         for addon_dir in kodi_addons.iterdir():
             if addon_dir.is_dir() and not addon_dir.name.startswith('.'):
                 dst = addons_dst / addon_dir.name
-                shutil.copytree(addon_dir, dst, ignore_errors=True)
-                print(f"   ✅ Copied addon: {addon_dir.name}")
-                addon_count += 1
+                try:
+                    shutil.copytree(addon_dir, dst)
+                    print(f"   ✅ Copied addon: {addon_dir.name}")
+                    addon_count += 1
+                except Exception as e:
+                    print(f"   ⚠️  Warning copying addon {addon_dir.name}: {e}")
+                    # Continue with other addons
         
         print(f"   📊 Total addons copied: {addon_count}")
     
