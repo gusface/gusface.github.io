@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+    <!-- 
+    This is a template addons.xml file for a Kodi addon repository.
+    Add your addon entries here following the format below:
+    
+    <addon id="addon.id" name="Addon Name" version="1.0.0" provider-name="Your Name">
+        <requires>
+            <import addon="xbmc.python" version="3.0.0"/>
+        </requires>
+        <extension point="xbmc.python.pluginsource" library="default.py">
+            <provides>video</provides>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary lang="en_GB">Brief addon description</summary>
+            <description lang="en_GB">Detailed addon description</description>
+            <disclaimer lang="en_GB">Disclaimer text if needed</disclaimer>
+            <platform>all</platform>
+            <license>GPL-2.0-or-later</license>
+            <forum></forum>
+            <website></website>
+            <email></email>
+            <source></source>
+            <news></news>
+            <assets>
+                <icon>icon.png</icon>
+                <fanart>fanart.jpg</fanart>
+                <screenshot>screenshot01.jpg</screenshot>
+            </assets>
+        </extension>
+    </addon>
+    -->
+    
+    <!-- Add your actual addon entries below this line -->
+    
+</addons>
