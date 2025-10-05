@@ -1,20 +1,18 @@
 # GUS Face Repository - Installation Guide
 
-## Quick Install URLs
+## Installation Methods
 
-### Method 1: Direct ZIP for Kodi (RECOMMENDED)
+### Method 1: File Manager Source (RECOMMENDED for Latest Kodi)
+```
+Source: https://gusface.github.io/
+File: repo.zip (or browse to /repo/ folder)
+```
+
+### Method 2: Direct ZIP URLs
 ```
 https://gusface.github.io/repo.zip
-```
-
-### Method 2: Full Repository ZIP
-```
+https://gusface.github.io/repo/repository.gusface.zip
 https://gusface.github.io/repository.gusface-1.0.0.zip
-```
-
-### Method 3: Repository Download Page (Browser)
-```
-https://gusface.github.io/repo
 ```
 
 ## Step-by-Step Installation
@@ -27,16 +25,17 @@ https://gusface.github.io/repo
    - Click "Yes" on the warning dialog
 
 2. **Install Repository**
+   
+   **Method A - File Manager Source (Latest Kodi):**
+   - Settings → File manager → Add source
+   - Enter path: `https://gusface.github.io/`
+   - Name it: "GUS Face Repo"
    - Settings → Add-ons → Install from zip file
-   - Choose one of these methods:
-     
-     **Method A - Direct URL (BEST):**
-     - Enter URL: `https://gusface.github.io/repo.zip`
-     
-     **Method B - Download First:**
-     - Visit: `https://gusface.github.io/repo`
-     - Download the repository ZIP
-     - Install from downloaded file
+   - Browse to "GUS Face Repo" → Select `repo.zip`
+   
+   **Method B - Direct URL (Older Kodi):**
+   - Settings → Add-ons → Install from zip file
+   - Enter URL: `https://gusface.github.io/repo.zip`
 
 3. **Verify Installation**
    - Settings → Add-ons → Install from repository
