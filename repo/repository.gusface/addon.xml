@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.gusface" name="GUS Face Repository" version="1.0.0" provider-name="GUS Face">
+    <extension point="xbmc.addon.repository" name="GUS Face Repository">
+        <info compressed="false">https://gusface.github.io/addons.xml</info>
+        <checksum>https://gusface.github.io/addons.xml.md5</checksum>
+        <datadir zip="true">https://gusface.github.io/</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>GUS Face Kodi Repository</summary>
+        <description>Repository for custom Kodi builds and addons curated by GUS Face. Contains clean, tested builds and selected addons.
+
+Install this repository to get access to:
+- GUS Face custom Kodi builds
+- Curated addon collections
+- Regular updates and maintenance
+
+To install: Download the repository ZIP and install from ZIP file in Kodi.</description>
+        <disclaimer>Use at your own risk. This repository contains third-party addons. Always backup your Kodi configuration before installing builds.</disclaimer>
+        <platform>all</platform>
+        <license>GPL-2.0</license>
+        <website>https://gusface.github.io</website>
+        <source>https://github.com/gusface/gusface.github.io</source>
+        <news>v1.0.0 - Initial release of GUS Face Repository</news>
+    </extension>
+</addon>

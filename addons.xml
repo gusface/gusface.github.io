@@ -1,36 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-    <!-- 
-    This is a template addons.xml file for a Kodi addon repository.
-    Add your addon entries here following the format below:
-    
-    <addon id="addon.id" name="Addon Name" version="1.0.0" provider-name="Your Name">
+    <!-- GUS Face Repository -->
+    <addon id="repository.gusface" name="GUS Face Repository" version="1.0.0" provider-name="GUS Face">
+        <extension point="xbmc.addon.repository" name="GUS Face Repository">
+            <info compressed="false">https://gusface.github.io/addons.xml</info>
+            <checksum>https://gusface.github.io/addons.xml.md5</checksum>
+            <datadir zip="true">https://gusface.github.io/</datadir>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>GUS Face Kodi Repository</summary>
+            <description>Repository for custom Kodi builds and addons curated by GUS Face. Contains clean, tested builds and selected addons.</description>
+            <disclaimer>Use at your own risk. This repository contains third-party addons.</disclaimer>
+            <platform>all</platform>
+            <license>GPL-2.0</license>
+            <website>https://gusface.github.io</website>
+            <source>https://github.com/gusface/gusface.github.io</source>
+        </extension>
+    </addon>
+
+    <!-- GUS Face Build (Public Version) -->
+    <addon id="build.gusface.public" name="GUS Face Build (Public)" version="1.0.0" provider-name="GUS Face">
+        <extension point="xbmc.addon.metadata">
+            <summary>GUS Face Custom Kodi Build - Public Version</summary>
+            <description>A carefully curated Kodi build with selected addons, custom theme, and optimized settings. This is the clean public version without personal data.</description>
+            <disclaimer>This build will overwrite your current Kodi configuration. Backup your current setup before installing.</disclaimer>
+            <platform>all</platform>
+            <license>GPL-2.0</license>
+            <website>https://gusface.github.io</website>
+            <buildname>GUSBuild_Public</buildname>
+            <buildversion>1.0.0</buildversion>
+            <builddate>2024-10-04</builddate>
+            <buildsize>48.9 MB</buildsize>
+            <buildurl>https://gusface.github.io/builds/GUSBuild_Public_v1.0_20251004_2255.zip</buildurl>
+            <buildtype>fresh</buildtype>
+        </extension>
+    </addon>
+
+    <!-- Repository Install Helper -->
+    <addon id="plugin.program.gusface.installer" name="GUS Face Installer" version="1.0.0" provider-name="GUS Face">
         <requires>
             <import addon="xbmc.python" version="3.0.0"/>
         </requires>
         <extension point="xbmc.python.pluginsource" library="default.py">
-            <provides>video</provides>
+            <provides>executable</provides>
         </extension>
         <extension point="xbmc.addon.metadata">
-            <summary lang="en_GB">Brief addon description</summary>
-            <description lang="en_GB">Detailed addon description</description>
-            <disclaimer lang="en_GB">Disclaimer text if needed</disclaimer>
+            <summary>GUS Face Repository Installer</summary>
+            <description>Helper addon to install GUS Face Repository and builds. Makes it easy to get started with GUS Face builds.</description>
+            <disclaimer>This will install the GUS Face repository and may modify your Kodi configuration.</disclaimer>
             <platform>all</platform>
-            <license>GPL-2.0-or-later</license>
-            <forum></forum>
-            <website></website>
-            <email></email>
-            <source></source>
-            <news></news>
-            <assets>
-                <icon>icon.png</icon>
-                <fanart>fanart.jpg</fanart>
-                <screenshot>screenshot01.jpg</screenshot>
-            </assets>
+            <license>GPL-2.0</license>
+            <website>https://gusface.github.io</website>
         </extension>
     </addon>
-    -->
-    
-    <!-- Add your actual addon entries below this line -->
-    
+
 </addons>
