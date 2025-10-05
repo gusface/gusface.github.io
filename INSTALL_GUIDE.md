@@ -4,8 +4,8 @@
 
 ### Method 1: File Manager Source (RECOMMENDED for Latest Kodi)
 ```
-Source: https://gusface.github.io/
-File: repo.zip (or browse to /repo/ folder)
+Source: https://gusface.github.io/repo
+File: repository.gusface.zip
 ```
 
 ### Method 2: Direct ZIP URLs
@@ -28,10 +28,10 @@ https://gusface.github.io/repository.gusface-1.0.0.zip
    
    **Method A - File Manager Source (Latest Kodi):**
    - Settings → File manager → Add source
-   - Enter path: `https://gusface.github.io/`
+   - Enter path: `https://gusface.github.io/repo`
    - Name it: "GUS Face Repo"
    - Settings → Add-ons → Install from zip file
-   - Browse to "GUS Face Repo" → Select `repo.zip`
+   - Browse to "GUS Face Repo" → Select `repository.gusface.zip`
    
    **Method B - Direct URL (Older Kodi):**
    - Settings → Add-ons → Install from zip file
